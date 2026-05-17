@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "BookLayer – Transforme sua leitura em hábito",
+  title: "Mentoria Exatas — Matemática, Física e Química",
   description:
-    "Rastreie seu progresso, defina metas e organize sua biblioteca pessoal com o BookLayer.",
+    "Mentoria online para estudantes do ensino fundamental e médio, com foco em matemática, física e química. Preparação para vestibulares seriados e colégio militar.",
   openGraph: {
-    title: "BookLayer – Transforme sua leitura em hábito",
+    title: "Mentoria Exatas — Matemática, Física e Química",
     description:
-      "Rastreie seu progresso, defina metas e organize sua biblioteca pessoal com o BookLayer.",
+      "Mentoria online para estudantes do ensino fundamental e médio, com foco em matemática, física e química.",
     type: "website",
   },
 };
