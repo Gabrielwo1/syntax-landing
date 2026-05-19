@@ -5,21 +5,20 @@ import Link from "next/link";
  * FEVA — Home Screen
  * Réplica pixel-perfect do Figma node 34:29 (frame 393×852px)
  *
- * Sistema de coordenadas:
- *   X → calc(px / 393 * 100%)   | escalona pela largura do viewport
- *   Y → calc(px / 852 * 100%)   | escalona pela altura do viewport
- *   Font → clamp(min, Xvw, max) | fluido entre breakpoints
+ * Escala: X = px/393*100vw | Y = px/852*100%
  *
- * Z-order (de trás pra frente, igual ao Figma):
- *   1. Blob roxa curva (34:296) — fundo decorativo
- *   2. Ellipse teal (34:31)     — blob esquerda
- *   3. Ellipse rosa (34:30)     — blob inferior
- *   4. Brain / ilustração (11:4490)  ← sobre os blobs
- *   5. Dots decorativos (34:32–34)
- *   6. Deco top-right (34:297)
- *   7. Título, descrição, underline
- *   8. CTA
- *   9. Logo ← topo do stack
+ * Z-order (Figma layer order, base → topo):
+ *  z0  curva roxa SVG (34:296)
+ *  z1  ellipse teal esquerda (34:31) — fatia 20px visível
+ *  z2  ellipse pink (34:30)  — fatia 242×166 visível
+ *  z3  brain illustration (11:4490) — sobre os blobs
+ *  z4  dots decorativos (34:32/33/34)
+ *  z5  deco top-right (34:297)
+ *  z6  título h1 (34:35)
+ *  z7  underline squiggle (34:41)
+ *  z8  descrição p (34:40)
+ *  z9  CTA frame (34:36)
+ *  z10 logo (34:314) — topo absoluto
  */
 export default function Home() {
   return (
@@ -30,92 +29,101 @@ export default function Home() {
         minHeight: "600px",
         maxHeight: "1000px",
         background:
-          "linear-gradient(180deg, rgba(37,199,177,0.05) 0%, rgba(0,101,110,0.05) 48.301%, rgba(151,49,161,0.05) 100%), #fff",
-        fontFamily: "'Poppins', sans-serif",
+          "linear-gradient(180deg,rgba(37,199,177,0.05) 0%,rgba(0,101,110,0.05) 48.301%,rgba(151,49,161,0.05) 100%),#fff",
+        fontFamily:          "'Poppins', sans-serif",
         WebkitFontSmoothing: "antialiased",
         MozOsxFontSmoothing: "grayscale",
       }}
     >
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          CAMADA 1 — CURVA ROXA TOP-RIGHT (node 34:296)
-          Figma: inset -12.56% -28.8% 71.99% 58.52% | container-type:size
-          Inner: rotate(-105deg) + hypot(cqw,cqh) sizing
-          Calculado no base 393×852:
-            container → left=230px top=-107px w=276px h=345px
-            inner     → w≈302px h≈205px (hypot das frações cq)
-      ═══════════════════════════════════════════════════════════════════ */}
+      {/* ──────────────────────────────────────────────────────────────────
+        Z0 · CURVA ROXA SVG (node 34:296)
+        SVG viewBox="0 0 302.938 204.758" preserveAspectRatio="none"
+        Container: inset -12.56% -28.8% 71.99% 58.52%
+          → left=230px top=-107px w=276px h=345px
+        Inner: rotate(-105deg) w=302.938/393*100vw h=204.758/393*100vw
+        Usa <img> simples pois o arquivo é SVG com overflow="visible"
+      ────────────────────────────────────────────────────────────────── */}
       <div
         aria-hidden="true"
         className="absolute pointer-events-none flex items-center justify-center"
         style={{
-          inset:         "-12.56% -28.8% 71.99% 58.52%",
-          containerType: "size",
-          zIndex:        0,
-        } as React.CSSProperties}
+          inset:    "-12.56% -28.8% 71.99% 58.52%",
+          overflow: "visible",
+          zIndex:   0,
+        }}
       >
-        <div
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/assets/feva-blob-purple.svg"
+          alt=""
           style={{
             transform:  "rotate(-105deg)",
             flexShrink: 0,
-            width:      "hypot(28.3888cqw, 84.6662cqh)",
-            height:     "hypot(71.6112cqw, 15.3338cqh)",
-            position:   "relative",
+            display:    "block",
+            width:      "calc(302.938 / 393 * 100vw)",
+            height:     "calc(204.758 / 393 * 100vw)",
           }}
-        >
-          <Image
-            src="/assets/feva-vector-curve.png"
-            alt=""
-            fill
-            className="object-contain"
-          />
-        </div>
+        />
       </div>
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          CAMADA 2 — BLOB TEAL ESQUERDA (node 34:31 — Ellipse 6)
-          Figma: left=-85px top=566px size=105×105px
-          (sai 85px pela borda esquerda — só a fatia direita é visível)
-      ═══════════════════════════════════════════════════════════════════ */}
+      {/* ──────────────────────────────────────────────────────────────────
+        Z1 · ELLIPSE TEAL — FATIA ESQUERDA (node 34:31)
+        Full circle: left=-85px top=566px size=105×105px
+        Imagem capturada = fatia visível: 20×105px
+        → posicionar em left=0, top=566/852*100%
+           w=20/393*100%  h=105/852*100%
+      ────────────────────────────────────────────────────────────────── */}
       <div
         aria-hidden="true"
         className="absolute pointer-events-none"
         style={{
-          left:   "calc(-85 / 393 * 100%)",
+          left:   "0",
           top:    "calc(566 / 852 * 100%)",
-          width:  "calc(105 / 393 * 100%)",
-          height: "calc(105 / 393 * 100%)",
+          width:  "calc(20  / 393 * 100%)",
+          height: "calc(105 / 852 * 100%)",
           zIndex: 1,
         }}
       >
-        <Image src="/assets/feva-ellipse-teal.png" alt="" fill className="object-contain" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/assets/feva-ellipse-teal.png"
+          alt=""
+          style={{ width: "100%", height: "100%", display: "block" }}
+        />
       </div>
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          CAMADA 3 — BLOB ROSA (node 34:30 — Ellipse 2)
-          Figma: left=151px top=686px size=291×291px
-          (extende além das bordas direita e inferior)
-      ═══════════════════════════════════════════════════════════════════ */}
+      {/* ──────────────────────────────────────────────────────────────────
+        Z2 · ELLIPSE ROSA (node 34:30)
+        Full circle: left=151px top=686px size=291×291px
+        Imagem capturada = fatia visível no frame: 242×166px
+        → posicionar em left=151/393*100%, top=686/852*100%
+           w=242/393*100%  h=166/852*100%
+      ────────────────────────────────────────────────────────────────── */}
       <div
         aria-hidden="true"
         className="absolute pointer-events-none"
         style={{
           left:   "calc(151 / 393 * 100%)",
           top:    "calc(686 / 852 * 100%)",
-          width:  "calc(291 / 393 * 100%)",
-          height: "calc(291 / 393 * 100%)",
+          width:  "calc(242 / 393 * 100%)",
+          height: "calc(166 / 852 * 100%)",
           zIndex: 2,
         }}
       >
-        <Image src="/assets/feva-ellipse-pink.png" alt="" fill className="object-contain" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/assets/feva-ellipse-pink.png"
+          alt=""
+          style={{ width: "100%", height: "100%", display: "block" }}
+        />
       </div>
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          CAMADA 4 — ILUSTRAÇÃO CÉREBRO (node 11:4490)
-          Figma: top=575px left=21px right=23px bottom=0
-          Dimensão calculada: 349×277px
-          ← SOBRE os blobs (Ellipse 2 e 6)
-      ═══════════════════════════════════════════════════════════════════ */}
+      {/* ──────────────────────────────────────────────────────────────────
+        Z3 · BRAIN ILLUSTRATION (node 11:4490)
+        Figma: top=575 left=21 right=23 bottom=0  →  349×277px
+        ACIMA dos ellipses (z3 > z2 e z1)
+      ────────────────────────────────────────────────────────────────── */}
       <div
         aria-hidden="true"
         className="absolute pointer-events-none"
@@ -135,60 +143,38 @@ export default function Home() {
         />
       </div>
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          CAMADA 5 — DOTS DECORATIVOS
-          (nodes 34:32, 34:33, 34:34)
-      ═══════════════════════════════════════════════════════════════════ */}
+      {/* ──────────────────────────────────────────────────────────────────
+        Z4 · DOTS DECORATIVOS
+        34:32 → 23×23 @ left=39 top=754
+        34:33 → 14×14 @ left=64 top=817
+        34:34 → 14×14 @ left=32 top=508
+      ────────────────────────────────────────────────────────────────── */}
+      {[
+        { src: "feva-dot-23.png", l: 39,  t: 754, s: 23 },
+        { src: "feva-dot-14.png", l: 64,  t: 817, s: 14 },
+        { src: "feva-dot-14b.png",l: 32,  t: 508, s: 14 },
+      ].map(({ src, l, t, s }) => (
+        <div
+          key={src}
+          aria-hidden="true"
+          className="absolute pointer-events-none"
+          style={{
+            left:   `calc(${l} / 393 * 100%)`,
+            top:    `calc(${t} / 852 * 100%)`,
+            width:  `calc(${s} / 393 * 100%)`,
+            height: `calc(${s} / 393 * 100%)`,
+            zIndex: 4,
+          }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={`/assets/${src}`} alt="" style={{ width: "100%", height: "100%", display: "block" }} />
+        </div>
+      ))}
 
-      {/* Dot teal 23×23 — left=39 top=754 */}
-      <div
-        aria-hidden="true"
-        className="absolute pointer-events-none"
-        style={{
-          left:   "calc(39 / 393 * 100%)",
-          top:    "calc(754 / 852 * 100%)",
-          width:  "calc(23 / 393 * 100%)",
-          height: "calc(23 / 393 * 100%)",
-          zIndex: 4,
-        }}
-      >
-        <Image src="/assets/feva-dot-23.png" alt="" fill className="object-contain" />
-      </div>
-
-      {/* Dot pequeno 14×14 — left=64 top=817 */}
-      <div
-        aria-hidden="true"
-        className="absolute pointer-events-none"
-        style={{
-          left:   "calc(64 / 393 * 100%)",
-          top:    "calc(817 / 852 * 100%)",
-          width:  "calc(14 / 393 * 100%)",
-          height: "calc(14 / 393 * 100%)",
-          zIndex: 4,
-        }}
-      >
-        <Image src="/assets/feva-dot-14.png" alt="" fill className="object-contain" />
-      </div>
-
-      {/* Dot pequeno 14×14 — left=32 top=508 */}
-      <div
-        aria-hidden="true"
-        className="absolute pointer-events-none"
-        style={{
-          left:   "calc(32 / 393 * 100%)",
-          top:    "calc(508 / 852 * 100%)",
-          width:  "calc(14 / 393 * 100%)",
-          height: "calc(14 / 393 * 100%)",
-          zIndex: 4,
-        }}
-      >
-        <Image src="/assets/feva-dot-14b.png" alt="" fill className="object-contain" />
-      </div>
-
-      {/* ═══════════════════════════════════════════════════════════════════
-          CAMADA 6 — DECO TOP-RIGHT (node 34:297 — Group3, 78×80px)
-          Figma: top=18px right=10px width=78px height=80px
-      ═══════════════════════════════════════════════════════════════════ */}
+      {/* ──────────────────────────────────────────────────────────────────
+        Z5 · DECO TOP-RIGHT (node 34:297 — Group3)
+        Figma: top=18 right=10 width=78 height=80
+      ────────────────────────────────────────────────────────────────── */}
       <div
         aria-hidden="true"
         className="absolute pointer-events-none"
@@ -203,18 +189,19 @@ export default function Home() {
         <Image src="/assets/feva-deco-tr.png" alt="" fill className="object-contain" />
       </div>
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          CAMADA 7 — TÍTULO (node 34:35)
-          Figma: left=26 top=173 width=318 | Poppins SemiBold 34px
-          Cor: #023e44 / "mora em você." → #2e8278
-      ═══════════════════════════════════════════════════════════════════ */}
+      {/* ──────────────────────────────────────────────────────────────────
+        Z6 · TÍTULO (node 34:35)
+        Figma: left=26 top=173 width=318
+        Poppins SemiBold 34px | #023e44 / span #2e8278
+        line-height: 1.15 (visual da screenshot Figma)
+      ────────────────────────────────────────────────────────────────── */}
       <h1
         className="absolute m-0 p-0"
         style={{
           left:          "calc(26  / 393 * 100%)",
           top:           "calc(173 / 852 * 100%)",
           width:         "calc(318 / 393 * 100%)",
-          fontSize:      "clamp(24px, calc(34 / 393 * 100vw), 48px)",
+          fontSize:      "clamp(26px, calc(34 / 393 * 100vw), 48px)",
           fontWeight:    600,
           lineHeight:    1.15,
           color:         "#023e44",
@@ -226,11 +213,15 @@ export default function Home() {
         <span style={{ color: "#2e8278" }}>mora em você.</span>
       </h1>
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          CAMADA 7b — UNDERLINE SQUIGGLE (node 34:41 — Vector 1)
-          Figma: outer left=20 top=273 w=116.26 h=70.92
-                 inner  w=111.5 h=33.8 rotate(20.63deg) inset-top=-0.9px
-      ═══════════════════════════════════════════════════════════════════ */}
+      {/* ──────────────────────────────────────────────────────────────────
+        Z7 · UNDERLINE SQUIGGLE (node 34:41 — Vector 1)
+        Figma JSX:
+          outer  left=20 top=273 w=116.26 h=70.92  (flex center)
+          inner  w=111.5 h=33.8  rotate(20.63deg)
+                 img absolute inset[-2.67%_0_0_0] max-w-none size-full
+        CRÍTICO: a imagem (115×16) é esticada para preencher 111.5×33.8
+                 → usar width:100% height:100% no <img> (não object-contain)
+      ────────────────────────────────────────────────────────────────── */}
       <div
         aria-hidden="true"
         className="absolute pointer-events-none flex items-center justify-center"
@@ -239,38 +230,54 @@ export default function Home() {
           top:    "calc(273    / 852 * 100%)",
           width:  "calc(116.26 / 393 * 100%)",
           height: "calc(70.92  / 852 * 100%)",
-          zIndex: 6,
+          zIndex: 7,
         }}
       >
         <div
           style={{
             transform:  "rotate(20.63deg)",
             flexShrink: 0,
+            position:   "relative",
             width:      "calc(111.5 / 393 * 100vw)",
             height:     "calc(33.8  / 393 * 100vw)",
-            position:   "relative",
-            marginTop:  "calc(-0.9  / 393 * 100vw)",
+            marginTop:  "calc(-0.9  / 393 * 100vw)", /* inset-top: -2.67% */
+            overflow:   "visible",
           }}
         >
-          <Image src="/assets/feva-underline.png" alt="" fill className="object-contain" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/assets/feva-underline.png"
+            alt=""
+            style={{
+              position: "absolute",
+              top:      "calc(-2.67%)",
+              left:     0,
+              right:    0,
+              bottom:   0,
+              width:    "100%",
+              height:   "calc(100% + 2.67%)",
+              display:  "block",
+            }}
+          />
         </div>
       </div>
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          CAMADA 7c — DESCRIÇÃO (node 34:40)
-          Figma: left=26 top=322 width=339 | Poppins Regular 14px #555
-      ═══════════════════════════════════════════════════════════════════ */}
+      {/* ──────────────────────────────────────────────────────────────────
+        Z8 · DESCRIÇÃO (node 34:40)
+        Figma: left=26 top=322 width=339
+        Poppins Regular 14px #555555 line-height normal
+      ────────────────────────────────────────────────────────────────── */}
       <p
         className="absolute m-0 p-0"
         style={{
           left:       "calc(26  / 393 * 100%)",
           top:        "calc(322 / 852 * 100%)",
           width:      "calc(339 / 393 * 100%)",
-          fontSize:   "clamp(11px, calc(14 / 393 * 100vw), 17px)",
+          fontSize:   "clamp(12px, calc(14 / 393 * 100vw), 17px)",
           fontWeight: 400,
           lineHeight: 1.65,
           color:      "#555555",
-          zIndex:     6,
+          zIndex:     8,
         }}
       >
         O FEVA é o seu espelho emocional. Reconheça padrões, quebre ciclos e
@@ -278,12 +285,12 @@ export default function Home() {
         complicação.
       </p>
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          CAMADA 8 — ÁREA CTA (node 34:36 — Frame 3)
-          Figma: left=26 top=426 width=340 gap=17px
-          ├─ Botão: height=51px radius=15px gradient teal→roxo
-          └─ Link:  14px #6a6a6a / "Faça o Login" #2e8278 SemiBold
-      ═══════════════════════════════════════════════════════════════════ */}
+      {/* ──────────────────────────────────────────────────────────────────
+        Z9 · CTA FRAME (node 34:36 — Frame 3)
+        Figma: left=26 top=426 width=340 gap=17px
+        ├─ Botão "Entre agora": h=51 radius=15 gradient teal→roxo
+        └─ "Já tem conta? Faça o Login": 14px centered
+      ────────────────────────────────────────────────────────────────── */}
       <div
         className="absolute flex flex-col items-center"
         style={{
@@ -291,26 +298,27 @@ export default function Home() {
           top:    "calc(426 / 852 * 100%)",
           width:  "calc(340 / 393 * 100%)",
           gap:    "calc(17  / 393 * 100vw)",
-          zIndex: 8,
+          zIndex: 9,
         }}
       >
         <Link
           href="/entrar"
-          className="flex w-full items-center justify-center shrink-0 transition-opacity duration-200 active:opacity-80"
+          className="flex w-full items-center justify-center shrink-0"
           style={{
             height:          "clamp(44px, calc(51 / 393 * 100vw), 64px)",
             borderRadius:    "15px",
             backgroundImage: "linear-gradient(68.755deg, rgb(46,130,120) 28.77%, rgb(151,49,161) 193.41%)",
-            boxShadow:       "0 4px 24px rgba(46,130,120,0.25)",
+            boxShadow:       "0 4px 20px rgba(46,130,120,0.22)",
+            transition:      "opacity .15s",
           }}
         >
           <span
             style={{
-              fontSize:   "clamp(14px, calc(18 / 393 * 100vw), 22px)",
-              fontWeight: 600,
-              color:      "#ffffff",
-              lineHeight: 1,
-              whiteSpace: "nowrap",
+              fontSize:      "clamp(15px, calc(18 / 393 * 100vw), 22px)",
+              fontWeight:    600,
+              color:         "#fff",
+              lineHeight:    1,
+              whiteSpace:    "nowrap",
               letterSpacing: "0.01em",
             }}
           >
@@ -321,7 +329,7 @@ export default function Home() {
         <p
           className="m-0 text-center w-full"
           style={{
-            fontSize:   "clamp(11px, calc(14 / 393 * 100vw), 17px)",
+            fontSize:   "clamp(12px, calc(14 / 393 * 100vw), 17px)",
             fontWeight: 400,
             lineHeight: 1.5,
             color:      "#6a6a6a",
@@ -330,7 +338,6 @@ export default function Home() {
           Já tem conta?{" "}
           <Link
             href="/login"
-            className="transition-opacity duration-150 active:opacity-70"
             style={{ color: "#2e8278", fontWeight: 600 }}
           >
             Faça o Login
@@ -338,11 +345,12 @@ export default function Home() {
         </p>
       </div>
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          CAMADA 9 — LOGO (node 34:314 — FEVA APP HORIZONTAL COLORIDO 1)
-          Figma: left=26 top=103 width=121 aspect=4096/1389 (≈121×41px)
-          ← No TOPO do stack — sobre tudo
-      ═══════════════════════════════════════════════════════════════════ */}
+      {/* ──────────────────────────────────────────────────────────────────
+        Z10 · LOGO (node 34:314 — FEVA APP HORIZONTAL COLORIDO 1)
+        Figma: left=26 top=103 width=121 aspect=4096/1389 (~121×41px)
+        Imagem: 4096×1389px (alta resolução — Next/Image otimiza)
+        TOPO do stack — sobre tudo
+      ────────────────────────────────────────────────────────────────── */}
       <div
         className="absolute"
         style={{
@@ -358,6 +366,7 @@ export default function Home() {
           alt="FEVA"
           fill
           priority
+          sizes="31vw"
           className="object-contain object-left"
         />
       </div>
