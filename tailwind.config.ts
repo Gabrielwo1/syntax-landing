@@ -9,28 +9,44 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#6759B6",
-        "primary-dark": "#5B4DA5",
-        "primary-darker": "#4A4A7C",
-        "primary-light": "#A098CC",
-        bg: "#F5F5FE",
-        "card-bg": "#F4F4F5",
-        "text-dark": "#1D1930",
-        "text-body": "#27272A",
-        "text-muted": "#68618C",
-        "text-light": "#A098CC",
-        "accent-blue": "#74B8EF",
-        "accent-navy": "#3A52C9",
-        "accent-pink": "#E9A5C6",
-        "accent-purple": "#B500FF",
+        "feva-dark": "#023e44",
+        "feva-teal": "#2e8278",
+        "feva-teal-light": "#25c7b1",
+        "feva-purple": "#9731a1",
+        "feva-purple-light": "#b667c0",
+        "feva-gray": "#6a6a6a",
+        "feva-gray-dark": "#555555",
       },
       fontFamily: {
-        sans: ["var(--font-plus-jakarta)", "Plus Jakarta Sans", "sans-serif"],
+        poppins: ["Poppins", "sans-serif"],
       },
       backgroundImage: {
-        "hero-gradient": "linear-gradient(135deg, #6759B6 0%, #3A52C9 60%, #74B8EF 100%)",
-        "card-gradient": "linear-gradient(135deg, #5B4DA5 0%, #3A52C9 100%)",
-        "progress-gradient": "linear-gradient(90deg, #6759B6 0%, #3A52C9 50%, #E9A5C6 100%)",
+        "feva-gradient": "linear-gradient(68.75deg, rgb(46, 130, 120) 28.77%, rgb(151, 49, 161) 193.41%)",
+        "feva-bg-gradient": "linear-gradient(180deg, rgba(37, 199, 177, 0.05) 0%, rgba(0, 101, 110, 0.05) 48.3%, rgba(151, 49, 161, 0.05) 100%)",
+      },
+      keyframes: {
+        float: {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-12px)" },
+        },
+        "float-delayed": {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-8px)" },
+        },
+        "slide-up": {
+          from: { opacity: "0", transform: "translateY(30px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
+        "fade-in": {
+          from: { opacity: "0" },
+          to: { opacity: "1" },
+        },
+      },
+      animation: {
+        float: "float 5s ease-in-out infinite",
+        "float-delayed": "float-delayed 6s ease-in-out infinite 1s",
+        "slide-up": "slide-up 0.7s ease-out forwards",
+        "fade-in": "fade-in 0.5s ease-out forwards",
       },
     },
   },

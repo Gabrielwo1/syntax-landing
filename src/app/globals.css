@@ -1,12 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-:root {
-  --font-plus-jakarta: 'Plus Jakarta Sans', sans-serif;
-}
 
 * {
   box-sizing: border-box;
@@ -19,32 +15,49 @@ html {
 }
 
 body {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  background-color: #F5F5FE;
-  color: #1D1930;
+  font-family: 'Poppins', sans-serif;
+  background-color: #ffffff;
+  color: #023e44;
   -webkit-font-smoothing: antialiased;
 }
 
 @layer utilities {
-  .text-gradient {
-    background: linear-gradient(135deg, #6759B6 0%, #3A52C9 60%, #74B8EF 100%);
+  .text-gradient-feva {
+    background: linear-gradient(68.75deg, rgb(46, 130, 120) 28.77%, rgb(151, 49, 161) 193.41%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  .hero-gradient {
-    background: linear-gradient(135deg, #6759B6 0%, #4a4a7c 60%, #3A52C9 100%);
+  .btn-feva {
+    background-image: linear-gradient(68.75deg, rgb(46, 130, 120) 28.77%, rgb(151, 49, 161) 193.41%);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    border-radius: 15px;
+    transition: opacity 0.2s ease, transform 0.2s ease;
   }
 
-  .card-glass {
-    background: rgba(255, 255, 255, 0.9);
+  .btn-feva:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+  }
+
+  .card-feva {
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(46, 130, 120, 0.12);
+    border-radius: 20px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
 
-  .phone-shadow {
-    box-shadow: 0 40px 80px rgba(103, 89, 182, 0.35), 0 8px 24px rgba(103, 89, 182, 0.2);
+  .card-feva:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(46, 130, 120, 0.15);
+  }
+
+  .section-bg {
+    background: linear-gradient(180deg, rgba(37, 199, 177, 0.04) 0%, rgba(0, 101, 110, 0.04) 50%, rgba(151, 49, 161, 0.04) 100%);
   }
 }
 
@@ -82,24 +95,4 @@ body {
 
 .animate-fade-in {
   animation: fade-in 0.5s ease-out forwards;
-}
-
-.feature-card:hover {
-  transform: translateY(-4px);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  box-shadow: 0 16px 40px rgba(103, 89, 182, 0.18);
-}
-
-.feature-card {
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-/* Progress bar animation */
-@keyframes progress-fill {
-  from { width: 0%; }
-  to { width: var(--progress); }
-}
-
-.progress-bar {
-  animation: progress-fill 1.5s ease-out forwards;
 }
