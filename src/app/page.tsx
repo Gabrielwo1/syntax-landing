@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 /**
@@ -133,13 +132,16 @@ export default function Home() {
           right:  "calc(23  / 393 * 100%)",
           bottom: 0,
           zIndex: 3,
+          display: "flex",
+          alignItems: "flex-end",
+          justifyContent: "center",
         }}
       >
-        <Image
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           src="/assets/feva-brain.png"
           alt="Ilustração da mente emocional"
-          fill
-          className="object-contain object-bottom"
+          style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: "bottom", display: "block" }}
         />
       </div>
 
@@ -186,7 +188,8 @@ export default function Home() {
           zIndex: 5,
         }}
       >
-        <Image src="/assets/feva-deco-tr.png" alt="" fill className="object-contain" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/assets/feva-deco-tr.png" alt="" style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
       </div>
 
       {/* ──────────────────────────────────────────────────────────────────
@@ -361,13 +364,11 @@ export default function Home() {
           zIndex:      10,
         }}
       >
-        <Image
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           src="/assets/feva-logo.png"
           alt="FEVA"
-          fill
-          priority
-          sizes="31vw"
-          className="object-contain object-left"
+          style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: "left", display: "block" }}
         />
       </div>
 
