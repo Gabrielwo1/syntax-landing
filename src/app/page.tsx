@@ -35,106 +35,74 @@ export default function Home() {
       }}
     >
 
-      {/* ──────────────────────────────────────────────────────────────────
-        Z0 · CURVA ROXA SVG (node 34:296)
-        SVG viewBox="0 0 302.938 204.758" preserveAspectRatio="none"
-        Container: inset -12.56% -28.8% 71.99% 58.52%
-          → left=230px top=-107px w=276px h=345px
-        Inner: rotate(-105deg) w=302.938/393*100cqw h=204.758/393*100cqw
-        Usa <img> simples pois o arquivo é SVG com overflow="visible"
-      ────────────────────────────────────────────────────────────────── */}
+      {/* ── Z0 · CURVA ROXA SVG ── blob-breathe para simular respiração orgânica */}
       <div
         aria-hidden="true"
         className="absolute pointer-events-none flex items-center justify-center"
-        style={{
-          inset:    "-12.56% -28.8% 71.99% 58.52%",
-          overflow: "visible",
-          zIndex:   0,
-        }}
+        style={{ inset: "-12.56% -28.8% 71.99% 58.52%", overflow: "visible", zIndex: 0 }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/assets/feva-blob-purple.svg"
           alt=""
           style={{
-            transform:  "rotate(-105deg)",
             flexShrink: 0,
             display:    "block",
             width:      "calc(302.938 / 393 * 100cqw)",
             height:     "calc(204.758 / 393 * 100cqw)",
+            animation:  "feva-blob-breathe 18s ease-in-out infinite",
           }}
         />
       </div>
 
-      {/* ──────────────────────────────────────────────────────────────────
-        Z1 · ELLIPSE TEAL — FATIA ESQUERDA (node 34:31)
-        Full circle: left=-85px top=566px size=105×105px
-        Imagem capturada = fatia visível: 20×105px
-        → posicionar em left=0, top=566/852*100%
-           w=20/393*100%  h=105/852*100%
-      ────────────────────────────────────────────────────────────────── */}
+      {/* ── Z1 · ELLIPSE TEAL — drift vertical suave ── */}
       <div
         aria-hidden="true"
         className="absolute pointer-events-none"
         style={{
-          left:   "0",
-          top:    "calc(566 / 852 * 100%)",
-          width:  "calc(20  / 393 * 100%)",
-          height: "calc(105 / 852 * 100%)",
-          zIndex: 1,
+          left:      "0",
+          top:       "calc(566 / 852 * 100%)",
+          width:     "calc(20  / 393 * 100%)",
+          height:    "calc(105 / 852 * 100%)",
+          zIndex:    1,
+          animation: "feva-ellipse-teal-drift 6s ease-in-out infinite 0.5s",
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/assets/feva-ellipse-teal.png"
-          alt=""
-          style={{ width: "100%", height: "100%", display: "block" }}
-        />
+        <img src="/assets/feva-ellipse-teal.png" alt="" style={{ width: "100%", height: "100%", display: "block" }} />
       </div>
 
-      {/* ──────────────────────────────────────────────────────────────────
-        Z2 · ELLIPSE ROSA (node 34:30)
-        Full circle: left=151px top=686px size=291×291px
-        Imagem capturada = fatia visível no frame: 242×166px
-        → posicionar em left=151/393*100%, top=686/852*100%
-           w=242/393*100%  h=166/852*100%
-      ────────────────────────────────────────────────────────────────── */}
+      {/* ── Z2 · ELLIPSE ROSA — drift diagonal suave ── */}
       <div
         aria-hidden="true"
         className="absolute pointer-events-none"
         style={{
-          left:   "calc(151 / 393 * 100%)",
-          top:    "calc(686 / 852 * 100%)",
-          width:  "calc(242 / 393 * 100%)",
-          height: "calc(166 / 852 * 100%)",
-          zIndex: 2,
+          left:      "calc(151 / 393 * 100%)",
+          top:       "calc(686 / 852 * 100%)",
+          width:     "calc(242 / 393 * 100%)",
+          height:    "calc(166 / 852 * 100%)",
+          zIndex:    2,
+          animation: "feva-ellipse-pink-drift 8s ease-in-out infinite 1s",
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/assets/feva-ellipse-pink.png"
-          alt=""
-          style={{ width: "100%", height: "100%", display: "block" }}
-        />
+        <img src="/assets/feva-ellipse-pink.png" alt="" style={{ width: "100%", height: "100%", display: "block" }} />
       </div>
 
-      {/* ──────────────────────────────────────────────────────────────────
-        Z3 · BRAIN ILLUSTRATION (node 11:4490)
-        Figma: top=575 left=21 right=23 bottom=0  →  349×277px
-        ACIMA dos ellipses (z3 > z2 e z1)
-      ────────────────────────────────────────────────────────────────── */}
+      {/* ── Z3 · BRAIN — flutua para cima e baixo suavemente ── */}
       <div
         aria-hidden="true"
         className="absolute pointer-events-none"
         style={{
-          top:    "calc(575 / 852 * 100%)",
-          left:   "calc(21  / 393 * 100%)",
-          right:  "calc(23  / 393 * 100%)",
-          bottom: 0,
-          zIndex: 3,
-          display: "flex",
+          top:       "calc(575 / 852 * 100%)",
+          left:      "calc(21  / 393 * 100%)",
+          right:     "calc(23  / 393 * 100%)",
+          bottom:    0,
+          zIndex:    3,
+          display:   "flex",
           alignItems: "flex-end",
           justifyContent: "center",
+          animation: "feva-brain-float 4.5s ease-in-out infinite",
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -145,27 +113,23 @@ export default function Home() {
         />
       </div>
 
-      {/* ──────────────────────────────────────────────────────────────────
-        Z4 · DOTS DECORATIVOS
-        34:32 → 23×23 @ left=39 top=754
-        34:33 → 14×14 @ left=64 top=817
-        34:34 → 14×14 @ left=32 top=508
-      ────────────────────────────────────────────────────────────────── */}
+      {/* ── Z4 · DOTS — cada um com ritmo próprio ── */}
       {[
-        { src: "feva-dot-23.png", l: 39,  t: 754, s: 23 },
-        { src: "feva-dot-14.png", l: 64,  t: 817, s: 14 },
-        { src: "feva-dot-14b.png",l: 32,  t: 508, s: 14 },
-      ].map(({ src, l, t, s }) => (
+        { src: "feva-dot-23.png",  l: 39, t: 754, s: 23, anim: "feva-dot-pulse 3s ease-in-out infinite 0.3s"  },
+        { src: "feva-dot-14.png",  l: 64, t: 817, s: 14, anim: "feva-dot-spin  8s linear infinite 0.8s"       },
+        { src: "feva-dot-14b.png", l: 32, t: 508, s: 14, anim: "feva-dot-pulse 4s ease-in-out infinite 1.4s"  },
+      ].map(({ src, l, t, s, anim }) => (
         <div
           key={src}
           aria-hidden="true"
           className="absolute pointer-events-none"
           style={{
-            left:   `calc(${l} / 393 * 100%)`,
-            top:    `calc(${t} / 852 * 100%)`,
-            width:  `calc(${s} / 393 * 100%)`,
-            height: `calc(${s} / 393 * 100%)`,
-            zIndex: 4,
+            left:      `calc(${l} / 393 * 100%)`,
+            top:       `calc(${t} / 852 * 100%)`,
+            width:     `calc(${s} / 393 * 100%)`,
+            height:    `calc(${s} / 393 * 100%)`,
+            zIndex:    4,
+            animation: anim,
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -173,31 +137,24 @@ export default function Home() {
         </div>
       ))}
 
-      {/* ──────────────────────────────────────────────────────────────────
-        Z5 · DECO TOP-RIGHT (node 34:297 — Group3)
-        Figma: top=18 right=10 width=78 height=80
-      ────────────────────────────────────────────────────────────────── */}
+      {/* ── Z5 · DECO TOP-RIGHT — gira suavemente ── */}
       <div
         aria-hidden="true"
         className="absolute pointer-events-none"
         style={{
-          top:    "calc(18 / 852 * 100%)",
-          right:  "calc(10 / 393 * 100%)",
-          width:  "calc(78 / 393 * 100%)",
-          height: "calc(80 / 852 * 100%)",
-          zIndex: 5,
+          top:       "calc(18 / 852 * 100%)",
+          right:     "calc(10 / 393 * 100%)",
+          width:     "calc(78 / 393 * 100%)",
+          height:    "calc(80 / 852 * 100%)",
+          zIndex:    5,
+          animation: "feva-deco-wobble 10s ease-in-out infinite",
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/assets/feva-deco-tr.png" alt="" style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
       </div>
 
-      {/* ──────────────────────────────────────────────────────────────────
-        Z6 · TÍTULO (node 34:35)
-        Figma: left=26 top=173 width=318
-        Poppins SemiBold 34px | #023e44 / span #2e8278
-        line-height: 1.15 (visual da screenshot Figma)
-      ────────────────────────────────────────────────────────────────── */}
+      {/* ── Z6 · TÍTULO — slide up na entrada ── */}
       <h1
         className="absolute m-0 p-0"
         style={{
@@ -210,30 +167,26 @@ export default function Home() {
           color:         "#023e44",
           letterSpacing: "-0.01em",
           zIndex:        6,
+          opacity:       0,
+          animation:     "feva-fade-up 0.65s ease-out 0.25s forwards",
         }}
       >
         {"Conheça a mente que "}
         <span style={{ color: "#2e8278" }}>mora em você.</span>
       </h1>
 
-      {/* ──────────────────────────────────────────────────────────────────
-        Z7 · UNDERLINE SQUIGGLE (node 34:41 — Vector 1)
-        Figma JSX:
-          outer  left=20 top=273 w=116.26 h=70.92  (flex center)
-          inner  w=111.5 h=33.8  rotate(20.63deg)
-                 img absolute inset[-2.67%_0_0_0] max-w-none size-full
-        CRÍTICO: a imagem (115×16) é esticada para preencher 111.5×33.8
-                 → usar width:100% height:100% no <img> (não object-contain)
-      ────────────────────────────────────────────────────────────────── */}
+      {/* ── Z7 · UNDERLINE — fade-in após o título ── */}
       <div
         aria-hidden="true"
         className="absolute pointer-events-none flex items-center justify-center"
         style={{
-          left:   "calc(20     / 393 * 100%)",
-          top:    "calc(273    / 852 * 100%)",
-          width:  "calc(116.26 / 393 * 100%)",
-          height: "calc(70.92  / 852 * 100%)",
-          zIndex: 7,
+          left:      "calc(20     / 393 * 100%)",
+          top:       "calc(273    / 852 * 100%)",
+          width:     "calc(116.26 / 393 * 100%)",
+          height:    "calc(70.92  / 852 * 100%)",
+          zIndex:    7,
+          opacity:   0,
+          animation: "feva-fade-in 0.5s ease-out 0.75s forwards",
         }}
       >
         <div
@@ -243,7 +196,7 @@ export default function Home() {
             position:   "relative",
             width:      "calc(111.5 / 393 * 100cqw)",
             height:     "calc(33.8  / 393 * 100cqw)",
-            marginTop:  "calc(-0.9  / 393 * 100cqw)", /* inset-top: -2.67% */
+            marginTop:  "calc(-0.9  / 393 * 100cqw)",
             overflow:   "visible",
           }}
         >
@@ -265,11 +218,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ──────────────────────────────────────────────────────────────────
-        Z8 · DESCRIÇÃO (node 34:40)
-        Figma: left=26 top=322 width=339
-        Poppins Regular 14px #555555 line-height normal
-      ────────────────────────────────────────────────────────────────── */}
+      {/* ── Z8 · DESCRIÇÃO — fade up após título ── */}
       <p
         className="absolute m-0 p-0"
         style={{
@@ -281,6 +230,8 @@ export default function Home() {
           lineHeight: 1.65,
           color:      "#555555",
           zIndex:     8,
+          opacity:    0,
+          animation:  "feva-fade-up 0.6s ease-out 0.5s forwards",
         }}
       >
         O FEVA é o seu espelho emocional. Reconheça padrões, quebre ciclos e
@@ -288,20 +239,17 @@ export default function Home() {
         complicação.
       </p>
 
-      {/* ──────────────────────────────────────────────────────────────────
-        Z9 · CTA FRAME (node 34:36 — Frame 3)
-        Figma: left=26 top=426 width=340 gap=17px
-        ├─ Botão "Entre agora": h=51 radius=15 gradient teal→roxo
-        └─ "Já tem conta? Faça o Login": 14px centered
-      ────────────────────────────────────────────────────────────────── */}
+      {/* ── Z9 · CTA — slide up final + botão com glow pulsante ── */}
       <div
         className="absolute flex flex-col items-center"
         style={{
-          left:   "calc(26  / 393 * 100%)",
-          top:    "calc(426 / 852 * 100%)",
-          width:  "calc(340 / 393 * 100%)",
-          gap:    "calc(17  / 393 * 100cqw)",
-          zIndex: 9,
+          left:      "calc(26  / 393 * 100%)",
+          top:       "calc(426 / 852 * 100%)",
+          width:     "calc(340 / 393 * 100%)",
+          gap:       "calc(17  / 393 * 100cqw)",
+          zIndex:    9,
+          opacity:   0,
+          animation: "feva-fade-up 0.65s ease-out 0.75s forwards",
         }}
       >
         <Link
@@ -311,7 +259,7 @@ export default function Home() {
             height:          "clamp(44px, calc(51 / 393 * 100cqw), 64px)",
             borderRadius:    "15px",
             backgroundImage: "linear-gradient(68.755deg, rgb(46,130,120) 28.77%, rgb(151,49,161) 193.41%)",
-            boxShadow:       "0 4px 20px rgba(46,130,120,0.22)",
+            animation:       "feva-btn-glow 3s ease-in-out infinite 1.5s",
             transition:      "opacity .15s",
           }}
         >
@@ -339,21 +287,13 @@ export default function Home() {
           }}
         >
           Já tem conta?{" "}
-          <Link
-            href="/login"
-            style={{ color: "#2e8278", fontWeight: 600 }}
-          >
+          <Link href="/login" style={{ color: "#2e8278", fontWeight: 600 }}>
             Faça o Login
           </Link>
         </p>
       </div>
 
-      {/* ──────────────────────────────────────────────────────────────────
-        Z10 · LOGO (node 34:314 — FEVA APP HORIZONTAL COLORIDO 1)
-        Figma: left=26 top=103 width=121 aspect=4096/1389 (~121×41px)
-        Imagem: 4096×1389px (alta resolução — Next/Image otimiza)
-        TOPO do stack — sobre tudo
-      ────────────────────────────────────────────────────────────────── */}
+      {/* ── Z10 · LOGO — fade down na entrada (primeiro elemento) ── */}
       <div
         className="absolute"
         style={{
@@ -362,6 +302,8 @@ export default function Home() {
           width:       "calc(121 / 393 * 100%)",
           aspectRatio: "4096 / 1389",
           zIndex:      10,
+          opacity:     0,
+          animation:   "feva-fade-down 0.55s ease-out 0s forwards",
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
