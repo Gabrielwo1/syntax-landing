@@ -4,7 +4,7 @@ import Link from "next/link";
  * FEVA — Home Screen
  * Réplica pixel-perfect do Figma node 34:29 (frame 393×852px)
  *
- * Escala: X = px/393*100vw | Y = px/852*100%
+ * Escala: X = px/393*100cqw | Y = px/852*100%
  *
  * Z-order (Figma layer order, base → topo):
  *  z0  curva roxa SVG (34:296)
@@ -40,7 +40,7 @@ export default function Home() {
         SVG viewBox="0 0 302.938 204.758" preserveAspectRatio="none"
         Container: inset -12.56% -28.8% 71.99% 58.52%
           → left=230px top=-107px w=276px h=345px
-        Inner: rotate(-105deg) w=302.938/393*100vw h=204.758/393*100vw
+        Inner: rotate(-105deg) w=302.938/393*100cqw h=204.758/393*100cqw
         Usa <img> simples pois o arquivo é SVG com overflow="visible"
       ────────────────────────────────────────────────────────────────── */}
       <div
@@ -60,8 +60,8 @@ export default function Home() {
             transform:  "rotate(-105deg)",
             flexShrink: 0,
             display:    "block",
-            width:      "calc(302.938 / 393 * 100vw)",
-            height:     "calc(204.758 / 393 * 100vw)",
+            width:      "calc(302.938 / 393 * 100cqw)",
+            height:     "calc(204.758 / 393 * 100cqw)",
           }}
         />
       </div>
@@ -204,7 +204,7 @@ export default function Home() {
           left:          "calc(26  / 393 * 100%)",
           top:           "calc(173 / 852 * 100%)",
           width:         "calc(318 / 393 * 100%)",
-          fontSize:      "clamp(26px, calc(34 / 393 * 100vw), 48px)",
+          fontSize:      "clamp(26px, calc(34 / 393 * 100cqw), 48px)",
           fontWeight:    600,
           lineHeight:    1.15,
           color:         "#023e44",
@@ -241,9 +241,9 @@ export default function Home() {
             transform:  "rotate(20.63deg)",
             flexShrink: 0,
             position:   "relative",
-            width:      "calc(111.5 / 393 * 100vw)",
-            height:     "calc(33.8  / 393 * 100vw)",
-            marginTop:  "calc(-0.9  / 393 * 100vw)", /* inset-top: -2.67% */
+            width:      "calc(111.5 / 393 * 100cqw)",
+            height:     "calc(33.8  / 393 * 100cqw)",
+            marginTop:  "calc(-0.9  / 393 * 100cqw)", /* inset-top: -2.67% */
             overflow:   "visible",
           }}
         >
@@ -276,7 +276,7 @@ export default function Home() {
           left:       "calc(26  / 393 * 100%)",
           top:        "calc(322 / 852 * 100%)",
           width:      "calc(339 / 393 * 100%)",
-          fontSize:   "clamp(12px, calc(14 / 393 * 100vw), 17px)",
+          fontSize:   "clamp(12px, calc(14 / 393 * 100cqw), 17px)",
           fontWeight: 400,
           lineHeight: 1.65,
           color:      "#555555",
@@ -300,7 +300,7 @@ export default function Home() {
           left:   "calc(26  / 393 * 100%)",
           top:    "calc(426 / 852 * 100%)",
           width:  "calc(340 / 393 * 100%)",
-          gap:    "calc(17  / 393 * 100vw)",
+          gap:    "calc(17  / 393 * 100cqw)",
           zIndex: 9,
         }}
       >
@@ -308,7 +308,7 @@ export default function Home() {
           href="/entrar"
           className="flex w-full items-center justify-center shrink-0"
           style={{
-            height:          "clamp(44px, calc(51 / 393 * 100vw), 64px)",
+            height:          "clamp(44px, calc(51 / 393 * 100cqw), 64px)",
             borderRadius:    "15px",
             backgroundImage: "linear-gradient(68.755deg, rgb(46,130,120) 28.77%, rgb(151,49,161) 193.41%)",
             boxShadow:       "0 4px 20px rgba(46,130,120,0.22)",
@@ -317,7 +317,7 @@ export default function Home() {
         >
           <span
             style={{
-              fontSize:      "clamp(15px, calc(18 / 393 * 100vw), 22px)",
+              fontSize:      "clamp(15px, calc(18 / 393 * 100cqw), 22px)",
               fontWeight:    600,
               color:         "#fff",
               lineHeight:    1,
@@ -332,7 +332,7 @@ export default function Home() {
         <p
           className="m-0 text-center w-full"
           style={{
-            fontSize:   "clamp(12px, calc(14 / 393 * 100vw), 17px)",
+            fontSize:   "clamp(12px, calc(14 / 393 * 100cqw), 17px)",
             fontWeight: 400,
             lineHeight: 1.5,
             color:      "#6a6a6a",

@@ -16,9 +16,24 @@ html {
 
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: #ffffff;
+  background-color: #e8eef0;
   color: #023e44;
   -webkit-font-smoothing: antialiased;
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Mobile shell: lock layout to 393px on desktop */
+body > * {
+  width: 100%;
+  max-width: 393px;
+  min-height: 100dvh;
+  position: relative;
+  box-shadow: 0 0 60px rgba(2, 62, 68, 0.18);
+  /* cqw inside page.tsx always = container width (≤393px), not viewport */
+  container-type: inline-size;
 }
 
 @layer utilities {
