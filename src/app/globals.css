@@ -36,6 +36,14 @@ body > * {
   container-type: inline-size;
 }
 
+/* Dark theme for screens with dark background (jornada, etc.) */
+body:has(.screen-dark) {
+  background-color: #111314;
+}
+body:has(.screen-dark) > * {
+  box-shadow: 0 0 80px rgba(0, 0, 0, 0.55);
+}
+
 @layer utilities {
   .text-gradient-feva {
     background: linear-gradient(68.75deg, rgb(46, 130, 120) 28.77%, rgb(151, 49, 161) 193.41%);
