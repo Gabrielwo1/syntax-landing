@@ -195,7 +195,11 @@ export default function Jornada() {
               </div>
 
               {/* Play button */}
-              <div className="relative flex items-center justify-center shrink-0" style={{ width: "64px", height: "64px" }}>
+              <button
+                aria-label="Reproduzir fase 1"
+                className="feva-play-btn relative flex items-center justify-center shrink-0"
+                style={{ width: "64px", height: "64px", background: "none", border: "none", padding: 0 }}
+              >
                 <div className="absolute inset-0 flex items-center justify-center" style={{ transform: "rotate(-90deg)" }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src="/assets/feva-icon-progress-ring.png" alt="" style={{ width: "64px", height: "64px", display: "block", filter: "drop-shadow(0 0 2px rgba(45,212,191,0.4))" }} />
@@ -203,9 +207,9 @@ export default function Jornada() {
                 <div className="relative flex items-center justify-center"
                   style={{ width: "48px", height: "48px", borderRadius: "9999px", boxShadow: "0 20px 25px -5px rgba(0,0,0,0.1),0 8px 10px -6px rgba(0,0,0,0.1)" }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/assets/feva-icon-play.png" alt="Reproduzir" style={{ width: "20px", height: "20px", display: "block" }} />
+                  <img src="/assets/feva-icon-play.png" alt="" style={{ width: "20px", height: "20px", display: "block" }} />
                 </div>
-              </div>
+              </button>
             </div>
           </div>
         </div>
@@ -213,16 +217,23 @@ export default function Jornada() {
         {/* Locked phases row */}
         <div className="flex gap-[11px] w-full">
           {phases.map(({ label }) => (
-            <div key={label} className="flex-1 relative flex items-center overflow-hidden"
+            <button
+              key={label}
+              aria-label={label}
+              className="feva-phase-card flex-1 relative flex items-center overflow-hidden"
               style={{
                 height: "66px", padding: "23px 9px", borderRadius: "16px",
                 backdropFilter: "blur(12px)", background: "rgba(74,74,74,0.4)",
                 border: "1px solid rgba(255,255,255,0.1)",
                 boxShadow: "0 0 0 1px rgba(255,255,255,0.05)",
-              }}>
+                textAlign: "left",
+              }}
+            >
               <div className="flex items-center gap-[16px]">
-                <div className="flex items-center justify-center shrink-0"
-                  style={{ width: "28px", height: "28px", borderRadius: "9999px", background: "rgba(255,255,255,0.11)" }}>
+                <div
+                  className="feva-lock-icon flex items-center justify-center shrink-0"
+                  style={{ width: "28px", height: "28px", borderRadius: "9999px", background: "rgba(255,255,255,0.11)", transition: "background 0.18s ease" }}
+                >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src="/assets/feva-icon-lock.png" alt="" style={{ width: "9px", height: "12px", display: "block" }} />
                 </div>
@@ -230,7 +241,7 @@ export default function Jornada() {
                   {label}
                 </span>
               </div>
-            </div>
+            </button>
           ))}
         </div>
       </div>
