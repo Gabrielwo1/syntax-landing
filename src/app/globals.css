@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -74,6 +74,22 @@ body > * {
 }
 .feva-phase-card:active {
   transform: translateY(0) scale(0.97);
+  transition-duration: 0.1s;
+}
+
+/* Onboard selection cards */
+.feva-ob-card {
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.2s ease, border-color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.feva-ob-card:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(13,132,130,0.14) !important;
+  border-color: rgba(13,132,130,0.35) !important;
+}
+.feva-ob-card:active {
+  transform: scale(0.97);
   transition-duration: 0.1s;
 }
 
